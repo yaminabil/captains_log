@@ -1,12 +1,32 @@
+require("dotenv").config();
+console.log (process.env.MONGO_URI);
+
 // load express 
 const express = require("express");
+const mongoose=require("mongoose");
 const app = express();
+
+
+
+//require the models 
+const Log = require("./models/log");
+
+
 
 
 //mvc setup 
 //views 
 app.set('view engine', 'jsx');
 app.engine('jsx', require('express-react-views').createEngine());
+//models 
+mongoose.connect (process.env.MONGO_URI , { 
+    useNewUrlParser : true ,
+    useUnifiedTopology : true
+})
+
+
+
+
 
 //middleware
 app.use (express.urlencoded({extended : true}));
@@ -43,7 +63,17 @@ app.post("/logs" , (req,res)=>{
     }else {
         req.body.shipIsBroken =false; 
     }
-    res.send (req.body);
+
+    Log.create(req.body, (err,createdLog) =>{
+        if (err) {
+            res.status(403).send(err);
+        }else {
+            console.log (createdLog);
+            res.redirect("/show")
+        }
+
+    })
+    
 })
 
 //edit
@@ -51,6 +81,16 @@ app.post("/logs" , (req,res)=>{
 
 
 //show
+
+app.get("/show",(req,res)=>{
+    res.send("this is the show page")
+})
+
+
+
+
+
+
 
 
 app.listen(3000,()=>{
