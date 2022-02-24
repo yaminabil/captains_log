@@ -38,8 +38,18 @@ app.use ( (req,res,next)=> {
 
 //induces 
 //index 
-app.get("/", (req,res) =>{
-    res.send("welcome to captain log ");
+app.get("/index", (req,res) =>{
+
+    Log.find( {} , (err,foundLogs)=>{
+        if(err){
+            res.status(400).send(err);
+        } else {
+            res.render("Index.jsx" ,{
+                logs:foundLogs
+            });
+        }
+    })
+    
 })
 
 
