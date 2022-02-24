@@ -8,9 +8,9 @@ class New extends React.Component {
                <div>
                    <h1> welcome to the new page </h1>
                    <form action="/logs" method="POST">
-                      title :  <input type="text" /><br/>
-                      entry : <textarea/><br/>
-                      shipIsBroken : <input type="checkbox"/><br/>
+                      title :  <input name= "title" type="text" /><br/>
+                      entry : <textarea name="entry"/><br/>
+                      shipIsBroken : <input name ="shipIsBroken" type="checkbox"/><br/>
                               <input type="submit" value="submit" />
 
                    </form>

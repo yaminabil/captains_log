@@ -8,6 +8,12 @@ const app = express();
 app.set('view engine', 'jsx');
 app.engine('jsx', require('express-react-views').createEngine());
 
+//middleware
+app.use (express.urlencoded({extended : true}));
+app.use ( (req,res,next)=> {
+    console.log (req.body) ; 
+    next () ;
+})
 
 
 //induces 
@@ -32,7 +38,12 @@ app.get("/new", (req,res) => {
 
 //create
 app.post("/logs" , (req,res)=>{
-    res.send ("received")
+    if (req.body.shipIsBroken === "on"){
+        req.body.shipIsBroken =true; 
+    }else {
+        req.body.shipIsBroken =false; 
+    }
+    res.send (req.body);
 })
 
 //edit
