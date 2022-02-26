@@ -1,5 +1,5 @@
 const React=require("react");
-const { modelName } = require("../models/log");
+
 
 
 class Index extends React.Component {
@@ -16,7 +16,15 @@ class Index extends React.Component {
                     
                     logs.map(log=>{
                         return (
-                            <li key ={`${log._id}`}><a href={`/show/${log._id}`}>  {log.title}</a></li>
+                            <li key ={`${log._id}`}><a href={`/show/${log._id}`}>  {log.title}</a>
+
+
+                            <form action ={`/index/${log._id}?_method=DELETE`}  method ="POST" >
+                              <input type ="submit"  value={`DELETE ${log.title}`}/>
+                            </form>
+
+                            </li>
+                            
                         )
                     })
                 }

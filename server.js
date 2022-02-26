@@ -3,6 +3,8 @@ console.log (process.env.MONGO_URI);
 
 // load express 
 const express = require("express");
+const { send } = require("express/lib/response");
+const methodOverride =require("method-override");
 const mongoose=require("mongoose");
 const app = express();
 
@@ -35,6 +37,8 @@ app.use ( (req,res,next)=> {
     next () ;
 })
 
+app.use(methodOverride("_method"))
+
 
 //induces 
 //index 
@@ -59,7 +63,15 @@ app.get("/new", (req,res) => {
 })
 
 //delete
-
+app.delete("/index/:id" ,(req,res) =>{
+    Log.findByIdAndDelete (req.params.id,(err,deleteLog)=>{
+        if(err) {
+            send.status(400).send(err);
+        } else {
+            res.redirect("/index");
+        }
+    })
+})
 
 
 //update
