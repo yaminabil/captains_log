@@ -67,6 +67,7 @@ app.get("/new", (req,res) => {
 
 
 //create
+
 app.post("/logs" , (req,res)=>{
     if (req.body.shipIsBroken === "on"){
         req.body.shipIsBroken =true; 
@@ -79,7 +80,7 @@ app.post("/logs" , (req,res)=>{
             res.status(403).send(err);
         }else {
             console.log (createdLog);
-            res.redirect("/show")
+            res.redirect(`/show/${createdLog._id}`)
         }
 
     })
@@ -92,8 +93,16 @@ app.post("/logs" , (req,res)=>{
 
 //show
 
-app.get("/show",(req,res)=>{
-    res.send("this is the show page")
+app.get("/show/:id",(req,res)=>{
+  Log.findById (req.params.id , (err,foundLog) =>{
+      if (err) {
+          res.status(400).send(err);
+      }else {
+          res.render("Show",{
+              log :foundLog
+          })
+      }
+  })
 })
 
 
