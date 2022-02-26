@@ -10,7 +10,7 @@ class Index extends React.Component {
         return(
             <html>
                 <h1>this is the index page </h1>
-                <a href="/new">Create new log click here </a>
+                <a href="/logs/new">Create new log click here </a>
                 <ul>
                 {
                     
@@ -19,7 +19,7 @@ class Index extends React.Component {
                             <li key ={`${log._id}`}><a href={`/show/${log._id}`}>  {log.title}</a>
 
 
-                            <form action ={`/index/${log._id}?_method=DELETE`}  method ="POST" >
+                            <form action ={`/logs/${log._id}?_method=DELETE`}  method ="POST" >
                               <input type ="submit"  value={`DELETE ${log.title}`}/>
                             </form>
 

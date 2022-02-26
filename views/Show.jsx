@@ -9,9 +9,10 @@ class Show extends React.Component {
             <html>
                 
                 <h1>this is the show page for {log.title} </h1>
-                <a href="/index">go back to the index page </a>
+                <a href="/logs">go back to the index page </a>
                 <p>{log.entry}</p>
-                <p>the {log.title}  {log.shipIsBroken? 'its broken' : 'it is not broken '}</p>
+                <p>the ship  {log.shipIsBroken? 'is broken' : ' is not broken '}</p>
+                <p>if you want to edit  this log click <a href={`/logs/${log._id}/edit`}>here</a></p>
                    
                 
             </html>
