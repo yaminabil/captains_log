@@ -12,6 +12,8 @@ const app = express();
 
 //require the models 
 const Log = require("./models/log");
+const FoodLog =require("./models/foodlog");
+const Food = require("./data/seed");
 
 
 
@@ -40,109 +42,83 @@ app.use ( (req,res,next)=> {
 app.use(methodOverride("_method"));
 
 
-//induces 
-//index 
-app.get("/logs", (req,res) =>{
 
-    Log.find( {} , (err,foundLogs)=>{
-        if(err){
-            res.status(400).send(err);
-        } else {
-            res.render("Index.jsx" ,{
-                logs:foundLogs
-            });
-        }
-    })
-    
-})
+
+
+
+//induces 
+const logConrollers =require("./controllers/logs.js");
+
+
+// main page 
+
+app.get("/",logConrollers.mainRoute);
+
+
+
+//index 
+
+app.get("/logs", logConrollers.indexRoute);
 
 
 //new
-app.get("/logs/new", (req,res) => {
-  res.render ("New.jsx");
-})
-
+app.get("/logs/new", logConrollers.newRoute);
 //delete
-app.delete("/logs/:id" ,(req,res) =>{
-    Log.findByIdAndDelete (req.params.id,(err,deleteLog)=>{
-        if(err) {
-            send.status(400).send(err);
-        } else {
-            res.redirect("/logs");
-        }
-    })
-})
-
-
+app.delete("/logs/:id" ,logConrollers.deleteRoute);
 //update
-app.put("/logs/:id" ,(req,res)=>{
-    if (req.body.shipIsBroken === "on"){
-        req.body.shipIsBroken=true;
-    } else {
-        req.body.shipIsBroken=false;
-    }
-    Log.findByIdAndUpdate (req.params.id , req.body , {new:true} , (err,updatedLog)=>{
-        if(err) {
-            res.status(400).send(err);
-        }else {
-            res.redirect(`/show/${req.params.id}`)
-        }
-    })
-})
+app.put("/logs/:id" ,logConrollers.updateRoute)
+//create
+app.post("/logs" , logConrollers.createRoute);
+//edit
+app.get ("/logs/:id/edit" ,logConrollers.editRoute);
+//show
+app.get("/show/:id",logConrollers.showRoute);
 
+
+// bonus 
+// The captain wants to keep track of eating habits: make a new set of routes in a new file in your controller folder called foodlogs
+
+
+
+const foodLogController = require ("./controllers/foodlog");
+const { db } = require("./models/log");
+
+
+//induces
+
+//index 
+app.get("/foodlog" , foodLogController.indexRoute);
+//new 
+app.get ("/foodlog/new",foodLogController.newRoute);
+//delete
+app.delete("/foodlog/:id",foodLogController.deleteRoute);
+//update
+app.put("/foodlog/:id",foodLogController.updateRoute);
 
 //create
-
-app.post("/logs" , (req,res)=>{
-    if (req.body.shipIsBroken === "on"){
-        req.body.shipIsBroken =true; 
-    }else {
-        req.body.shipIsBroken =false; 
-    }
-
-    Log.create(req.body, (err,createdLog) =>{
-        if (err) {
-            res.status(403).send(err);
-        }else {
-            console.log (createdLog);
-            res.redirect(`/show/${createdLog._id}`)
-        }
-
-    })
-    
-})
+app.post("/foodlog",foodLogController.createRoute);
 
 //edit
-app.get ("/logs/:id/edit" ,(req,res)=>{
-    Log.findById(req.params.id , (err,foundLog) =>{
-        if(err) {
-
-        }else {
-            res.render ("Edit.jsx" , {
-                log :foundLog 
-            })
-        }
-    })
-})
+app.get("/foodlog/:id/edit" ,foodLogController.editRoute);
 
 
 //show
+app.get("/foodlog/:id",foodLogController.showRoute);
 
-app.get("/show/:id",(req,res)=>{
-  Log.findById (req.params.id , (err,foundLog) =>{
-      if (err) {
-          res.status(400).send(err);
-      }else {
-          res.render("Show",{
-              log :foundLog
-          })
-      }
-  })
+
+// insert my data 
+
+
+FoodLog.insertMany(Food)
+.then((food)=>{
+    console.log(food)
 })
-
-
-
-
+.catch((err)=>{
+    console.log(err);
+})
+.finally(()=>{
+    db.close();
+})
 
 
 

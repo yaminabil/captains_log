@@ -1,5 +1,5 @@
 const React = require("react");
-const { modelName } = require("../models/log");
+
 
 
 class Edit extends React.Component {
@@ -8,7 +8,9 @@ class Edit extends React.Component {
         return (
             <div>
               <h1>this is the edit page for {log.title}   </h1>
+              
               <form action={`/logs/${log._id}?_method=PUT`} method="POST" >
+
                title : <input name ="title" type="text" value={log.title} /> <br/>
                entry : <textarea name ="entry" type ="text"  value={log.entry}/><br/>
                shipIsBroken :{

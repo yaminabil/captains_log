@@ -11,6 +11,8 @@ class Show extends React.Component {
                 <h1>this is the show page for {log.title} </h1>
                 <a href="/logs">go back to the index page </a>
                 <p>{log.entry}</p>
+                <p>time was created : {log.createdAt.toLocaleTimeString()} @ {log.createdAt.toLocaleDateString()}</p>
+                
                 <p>the ship  {log.shipIsBroken? 'is broken' : ' is not broken '}</p>
                 <p>if you want to edit  this log click <a href={`/logs/${log._id}/edit`}>here</a></p>
                    
