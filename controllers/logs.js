@@ -3,9 +3,7 @@ const Log = require("../models/log");
 
 
 exports.mainRoute = (req,res)=>{
-    res.send(
-        "<div><h1><a href='/logs'>go to logs </a><h1> </br><h1> <a href='/foodlog'>go to foodlogs </a></h1> </div>"
-        )
+    res.render("logs/MainPage.jsx");
 };
 
 

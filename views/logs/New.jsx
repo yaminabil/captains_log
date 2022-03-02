@@ -1,22 +1,25 @@
 const React = require ("react");
+const DefaultLayout =require("../layout/Default");
 
 
 class New extends React.Component {
    render ()  {
        return (
-           <html>
-               <div>
-                   <h1> welcome to the new page </h1>
-                   <a href="/logs">go back to index page</a>
-                   <form action="/logs" method="POST">   
-                      title :  <input name= "title" type="text" /><br/>
-                      entry : <textarea name="entry"/><br/>
-                      shipIsBroken : <input name ="shipIsBroken" type="checkbox"/><br/>
-                              <input type="submit" value="submit" />
+           <DefaultLayout title = {"welcome to the new page "}>
+           
+           <a href="/logs">go back to index page</a>
 
-                   </form>
-               </div>
-           </html>
+           <form action="/logs" method="POST">   
+               
+             <li className="info"><p class="diffrent">title :  </p>      <input id="title-new" name= "title" type="text" /> </li> <br/>
+             <li className="info"><p class="diffrent">entry :</p>       <textarea name="entry"/>  </li> <br/>
+              <li className="info"><p class="diffrent"> shipIsBroken :</p> <input   name ="shipIsBroken" type="checkbox"/> </li><br/>
+                             <input className="submit" type="submit" value="submit" />
+
+           </form>
+       
+       </DefaultLayout>
+           
        )
    }
  }

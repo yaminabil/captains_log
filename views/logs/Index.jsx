@@ -1,5 +1,5 @@
 const React=require("react");
-
+const DefaultLayout =require("../layout/Default");
 
 
 class Index extends React.Component {
@@ -8,9 +8,9 @@ class Index extends React.Component {
     render() {
         const logs = this.props.logs;
         return(
-            <html>
-                <h1>this is the index page </h1>
-                <a href="/logs/new">Create new log click here </a>
+            <DefaultLayout title = {"logs index page "}>
+            
+                <a id="create" href="/logs/new">Create new log click here </a>
                 <ul>
                 {
                     
@@ -20,7 +20,8 @@ class Index extends React.Component {
 
 
                             <form action ={`/logs/${log._id}?_method=DELETE`}  method ="POST" >
-                              <input type ="submit"  value={`DELETE ${log.title}`}/>
+
+                              <input className="delete" type ="submit"  value={`DELETE ${log.title}`}/>
                             </form>
 
                             </li>
@@ -29,9 +30,11 @@ class Index extends React.Component {
                     })
                 }
                 </ul>
+
+                 <a href="/" className="back">back</a>
                 
                
-            </html>
+            </DefaultLayout>
         )
     }
 }

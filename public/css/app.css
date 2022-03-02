@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css?family=Comfortaa|Righteous');
+
+/* body {
+  background-image: url("/Users/bilalyounes/Desktop/software_homework/unit_2/captains_log/images/2174sq.jpeg");
+    margin: 0;
+    font-family: 'Comfortaa', cursive;
+  } */
+
+
+/*   
+  h1 {
+    font-family: 'Righteous', cursive;
+    background: antiquewhite;
+    margin:0;
+    margin-bottom: .5em;
+    padding: 1em;
+    text-align: center;
+  }
+  
+  a {
+    color: orange;
+    text-decoration: none;
+    text-shadow: 1px 1px 1px black;
+    font-size: 1.5em;
+    background: rgba(193, 235, 187, .9);
+  }
+  
+  a:hover {
+    color: ghostwhite;
+  }
+  
+  li {
+    list-style: none;
+  }
+  
+  li a {
+    color: mediumseagreen;
+  }
+  
+  input[type=text] {
+    padding: .3em;
+  }
+  
+  input[type=submit] {
+    padding: .3em;
+    color: orange;
+    background: mediumseagreen;
+    font-size: 1em;
+    border-radius: 10%;
+  } */
+
+
+  body {
+  background-image: url(https://i.imgflip.com/2174sq.jpg);
+   border: 5px solid lightblue; 
+   background-repeat: no-repeat;
+   background-size: cover;
+   text-align: center;
+   margin: 10% auto;
+   width: 50%;
+   font-family: 'Comfortaa', cursive;
+   cursor: pointer;
+   
+  }
+
+  a{
+     text-decoration: none;
+     color: black;
+    font-size: x-large;
+    background:lightblue;
+  }
+  a:hover {
+    background:green;
+  }
+
+
+  li {
+     list-style: none;
+     /* border: solid black; */
+     display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+     margin-top: 2px;
+     margin-right: 10px;
+     
+  }
+
+  h1{ 
+    background: lightblue;
+    color:purple;
+    font-size: 60px;
+    /* border: solid red; */
+    width: 60%;
+    margin:0 auto;
+    margin-bottom: 10px;
+    margin-top: 10px;
+
+  
+  }
+
+  input {
+    background: lightblue;
+    border: solid lightblue;
+    
+  }
+  /* input:hover{
+    background-color: red;
+  } */
+  
+
+.info {
+  font-size: large;
+ 
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: fit-content;
+
+}
+
+textarea {
+  background: #add8e6;
+  width: 70%;
+ cursor: pointer;
+
+}
+
+
+.diffrent {
+  background: #add8e6;
+  font-size: x-large;
+  margin-left: 5px;
+
+
+}
+.submit{
+  font-size: 40px;
+    background-color:lightblue;
+    margin-bottom: 10px;
+    position: relative;
+    border: lightblue;
+    cursor: pointer;
+    font-family: 'Comfortaa', cursive;
+}
+.submit:hover {
+  /* font-size: 60px; */
+  background-color:green;
+
+}
+
+.delete:hover {
+  background-color: red;
+  border:solid  red ;
+  cursor: pointer;
+}
+
+#create:hover {
+  background-color: green;
+}
+
+.back {
+  font-size: 30px;
+  padding: 5px;
+  border-radius: 20px;
+  position: relative;
+  bottom: 10px;
+}
+
+
+
+#time {
+  background:lightblue;
+  width: 60%;
+  margin: 0 auto;
+  height: 100%;
+}
+
+input[type=checkbox] {
+  background-color: red;
+}
+
+#title-new{
+  /* font-size: 10px; */
+  height:20px;
+  cursor: pointer;
+
+}

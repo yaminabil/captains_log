@@ -7,6 +7,7 @@ const { send } = require("express/lib/response");
 const methodOverride =require("method-override");
 const mongoose=require("mongoose");
 const app = express();
+app.use(express.static('public'));
 
 
 
@@ -81,7 +82,7 @@ app.get("/show/:id",logConrollers.showRoute);
 
 
 const foodLogController = require ("./controllers/foodlog");
-const { db } = require("./models/log");
+
 
 
 //induces
@@ -107,18 +108,18 @@ app.get("/foodlog/:id",foodLogController.showRoute);
 
 
 // insert my data 
+// const { db } = require("./models/log");
 
-
-FoodLog.insertMany(Food)
-.then((food)=>{
-    console.log(food)
-})
-.catch((err)=>{
-    console.log(err);
-})
-.finally(()=>{
-    db.close();
-})
+// FoodLog.insertMany(Food)
+// .then((food)=>{
+//     console.log(food)
+// })
+// .catch((err)=>{
+//     console.log(err);
+// })
+// .finally(()=>{
+//     db.close();
+// })
 
 
 

@@ -1,4 +1,5 @@
 const React = require("react");
+const DefaultLayout =require("../layout/Default");
 
 
 
@@ -6,20 +7,22 @@ class Edit extends React.Component {
     render () {
         const log = this.props.log;
         return (
-            <div>
+         <DefaultLayout>
               <h1>this is the edit page for {log.title}   </h1>
-              
+           
+
               <form action={`/logs/${log._id}?_method=PUT`} method="POST" >
 
-               title : <input name ="title" type="text" value={log.title} /> <br/>
-               entry : <textarea name ="entry" type ="text"  value={log.entry}/><br/>
-               shipIsBroken :{
+              <li className="info"> <p class="diffrent">title : </p><input name ="title" type="text" value={log.title} />  </li><br/>
+              <li className="info"> <p class="diffrent">entry : </p><textarea name ="entry" type ="text"  value={log.entry}/></li><br/>
+              <li className="info"> <p class="diffrent"> shipIsBroken : </p>{
                    log.shipIsBroken? <input name="shipIsBroken" type="checkbox"  defaultChecked/> :
                    <input name="shipIsBroken" type="checkbox"/>
-               }
-               <br/><input type="submit"/>
+               }</li>
+               <br/><input className="submit" type="submit"/>
               </form>
-            </div>
+            
+              </DefaultLayout>
         )
     }
 }
